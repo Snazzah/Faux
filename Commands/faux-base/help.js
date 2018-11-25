@@ -46,7 +46,7 @@ module.exports = class Help extends Command {
 
       let helpobj = {}
       this.client.cmds.commands.forEach((v, k) => { 
-        if(!v.listed && !this.client.owner(message)) return
+        if(!v.listed && !this.client.elevated(message)) return
         let string = `${prefix}${k}`
         if(helpobj[v.helpMeta.category]) helpobj[v.helpMeta.category].push(string);
           else helpobj[v.helpMeta.category] = [string];

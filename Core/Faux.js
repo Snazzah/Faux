@@ -19,8 +19,8 @@ module.exports = class Faux extends Discord.Client {
       userAgent: { version: pkg.version }
     })
     if(process.env.SHARDING_MANAGER) Object.assign(config.discord, {
-      shardCount: parseInt(process.env.SHARD_COUNT),
-      shardId: parseInt(process.env.SHARD_ID)
+      shardCount: parseInt(process.env.TOTAL_SHARD_COUNT),
+      shardId: parseInt(process.env.SHARDS)
     })
     super(config.discord)
     this.fauxConsoleInfo()
@@ -46,7 +46,7 @@ module.exports = class Faux extends Discord.Client {
   fauxConsoleInfo() {
     console.log(chalk.gray('==============================='))
     console.log(chalk.yellow('Faux'), this.FAUX_VER)
-    console.log(chalk.magenta(`${process.env.SHARDING_MANAGER ? '' : 'Not '}Sharded`), process.env.SHARDING_MANAGER ? `| ${chalk.yellow('Shard ' + process.env.SHARD_ID)} running ${process.env.SHARD_COUNT} shards.` : '')
+    console.log(chalk.magenta(`${process.env.SHARDING_MANAGER ? '' : 'Not '}Sharded`), process.env.SHARDING_MANAGER ? `| ${chalk.yellow('Shard ' + process.env.SHARDS)} running ${process.env.TOTAL_SHARD_COUNT} shards.` : '')
     console.log(chalk.gray('==============================='))
   }
 
@@ -91,7 +91,7 @@ module.exports = class Faux extends Discord.Client {
 // LOGGING
 
   get logPrefix() {
-    return `${chalk.gray('[')}${process.env.SHARDING_MANAGER ? `SHARD ${chalk.magenta(process.env.SHARD_ID)}` : 'BOT'}${chalk.gray(']')}`
+    return `${chalk.gray('[')}${process.env.SHARDING_MANAGER ? `SHARD ${chalk.magenta(process.env.SHARDS)}` : 'BOT'}${chalk.gray(']')}`
   }
 
   log(...a) {
@@ -113,29 +113,15 @@ module.exports = class Faux extends Discord.Client {
 // CHECK PERMS
 
   embed(message){
-    let embedPerms = false
-    if(message.channel.type !== "text"){
-      embedPerms = true;
-    }else{
-      if(message.channel.permissionsFor(this.user).has("EMBED_LINKS")){
-        embedPerms = true;
-      }
-    }
-
-    return embedPerms
+    return message.channel.type !== "text" || message.channel.permissionsFor(this.user).has("EMBED_LINKS")
   }
 
   attach(message){
-    let attachPerms = false
-    if(message.channel.type !== "text"){
-      attachPerms = true;
-    }else{
-      if(message.channel.permissionsFor(this.user).has("ATTACH_FILES")){
-        attachPerms = true;
-      }
-    }
+    return message.channel.type !== "text" || message.channel.permissionsFor(this.user).has("ATTACH_FILES")
+  }
 
-    return attachPerms
+  emoji(message){
+    return message.channel.type !== "text" || message.channel.permissionsFor(this.user).has("USE_EXTERNAL_EMOJIS")
   }
 
   elevated(message){
