@@ -26,6 +26,7 @@ module.exports = class Faux extends Discord.Client {
     this.dir = mainDir
     this.config = config
     this.pkg = pkg
+    this.awaitedMessages = {};
     this.on('ready', () => this.log(chalk.green('Logged in')))
     this.on('warn', s => this.warn('WARN', s))
     this.on('error', s => this.error('ERROR', s))
@@ -118,5 +119,50 @@ module.exports = class Faux extends Discord.Client {
 
   elevated(message){
     return this.config.elevated.includes(message.author.id)
+  }
+
+// AWAITING MESSAGES
+  
+  awaitMessage(msg, callback = () => true, timeout = 30000) {
+    let _this = this
+    return new Promise((resolve, reject) => {
+      if (!this.awaitedMessages[msg.channel.id]) this.awaitedMessages[msg.channel.id] = {};
+      let timer;
+      if (timeout >= 0) {
+        timer = setTimeout(() => {
+          delete _this.awaitedMessages[msg.channel.id][msg.author.id];
+          reject(new Error(`Request timed out (${timeout}ms)`));
+        }, timeout);
+      }
+      if (this.awaitedMessages[msg.channel.id][msg.author.id]) {
+        this.awaitedMessages[msg.channel.id][msg.author.id].reject();   
+      }
+      this.awaitedMessages[msg.channel.id][msg.author.id] = {
+        resolve: function(msg2) {
+          clearTimeout(timer);
+          delete _this.awaitedMessages[msg.channel.id][msg.author.id];
+          resolve(msg2);
+        },
+        reject: function() { clearTimeout(timer); reject(new Error('Request was overwritten')); },
+        callback
+      };
+    });
+  }
+
+  stopAwait(chnId, msgId) {
+    if (!this.awaitedMessages[chnId]) return;
+    if (!this.awaitedMessages[chnId][msgId]) return;
+    if (this.awaitedMessages[chnId][msgId]) {
+      this.awaitedMessages[chnId][msgId].reject();   
+      delete this.awaitedMessages[chnId][msgId];
+    }
+  }
+
+  stopAwaitChannel(chnId) {
+    if (!this.awaitedMessages[chnId]) return;
+    this.util.keyValueForEach(this.awaitedMessages, (k,v) => {
+      v.reject();
+    });
+    delete this.awaitedMessages[chnId];
   }
 }
