@@ -12,6 +12,14 @@ module.exports = class EventHandler {
     if(Message.author.bot) return;
     if(Message.channel.type !== "dm" && !Message.channel.permissionsFor(this.client.user).has("SEND_MESSAGES")) return
 
+		if (this.client.awaitedMessages.hasOwnProperty(Message.channel.id)
+			&& this.client.awaitedMessages[Message.channel.id].hasOwnProperty(Message.author.id)) {
+				if (this.client.awaitedMessages[Message.channel.id][Message.author.id].callback(Message)) {
+					this.client.awaitedMessages[Message.channel.id][Message.author.id].resolve(Message);
+					return;
+				}
+		}
+
     if(!Message.content.match(Util.prefixRegex(this.client))) return
     try {
       let args = Util.stripPrefix(Message).split(' ')
