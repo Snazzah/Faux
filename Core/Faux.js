@@ -44,7 +44,7 @@ module.exports = class Faux extends Discord.Client {
   }
 
   async serverCount() {
-    let servers = process.env.SHARDING_MANAGER ? await this.client.shard.fetchClientValues('guilds.size') : [this.client.guilds.size];
+    let servers = this.isSharded() ? await this.shard.fetchClientValues('guilds.size') : [this.guilds.size];
     return servers.reduce((prev, val) => prev + val, 0);
   }
 
@@ -76,6 +76,10 @@ module.exports = class Faux extends Discord.Client {
     return super.login(this.config.discordToken)
   }
 
+  isSharded(){
+    return !!this.shard;
+  }
+
   apiKey(name) {
     if(!this.config.api || !this.config.api[name]) return
     return this.config.api[name]
@@ -84,7 +88,7 @@ module.exports = class Faux extends Discord.Client {
 // LOGGING
 
   get logPrefix() {
-    return `${chalk.gray('[')}${process.env.SHARDING_MANAGER ? `SHARD ${chalk.magenta(process.env.SHARDS)}` : 'BOT'}${chalk.gray(']')}`
+    return `${chalk.gray('[')}${this.isSharded() ? `SHARD ${chalk.blue(this.shard.id)}` : 'BOT'}${chalk.gray(']')}`
   }
 
   log(...a) {
