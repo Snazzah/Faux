@@ -9,7 +9,7 @@ const chalk = require('chalk')
 
 module.exports = class Faux extends Discord.Client {
   get FAUX_VER() {
-    return '1.1.0';
+    return '1.1.1';
   }
 
   constructor({configPath, packagePath, mainDir} = {}) {
