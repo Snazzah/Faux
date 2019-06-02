@@ -5,7 +5,7 @@ module.exports = class Info extends Command {
   get aliases() { return ['ℹ'] }
 
   async exec(message, args) {
-    let servers = process.env.SHARDING_MANAGER ? await this.client.shard.fetchClientValues('guilds.size') : [this.client.guilds.size];
+    let servers = await this.client.serverCount();
     let embed = {
       color: this.client.config.color_scheme,
       title: `Information about ${this.client.user.username}.`,
