@@ -23,7 +23,6 @@ module.exports = class Faux extends Discord.Client {
       shardId: parseInt(process.env.SHARDS)
     })
     super(config.discord)
-    this.fauxConsoleInfo()
     this.dir = mainDir
     this.config = config
     this.pkg = pkg
@@ -41,13 +40,6 @@ module.exports = class Faux extends Discord.Client {
     })
 
     this.log(chalk.green('Client initialized.'))
-  }
-
-  fauxConsoleInfo() {
-    console.log(chalk.gray('==============================='))
-    console.log(chalk.yellow('Faux'), this.FAUX_VER)
-    console.log(chalk.magenta(`${process.env.SHARDING_MANAGER ? '' : 'Not '}Sharded`), process.env.SHARDING_MANAGER ? `| ${chalk.yellow('Shard ' + process.env.SHARDS)} running ${process.env.TOTAL_SHARD_COUNT} shards.` : '')
-    console.log(chalk.gray('==============================='))
   }
 
   async serverCount() {
