@@ -19,5 +19,6 @@
   "botlist": {},
   "api": {},
   "commands": "./Commands",
+  "client_id": true,
   "color_scheme": 15633698
 }

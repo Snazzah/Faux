@@ -46,4 +46,5 @@ Both `sharding.js` and `main.js` can be used to start the bot.  Alternatively, y
 | botlist | object | Bot list tokens supported by [dbots.js](https://github.com/Snazzah/dbots.js). |
 | api | object | API keys that can help with any commands you make that utilize API in any way. |
 | commands | string | The path to the folder where all the commands will be. |
+| client_id | string OR `true` | The client ID of the bot. If you are using an older bot application, you can enter the ID here, otherwise setting this to `true` or any other value will use the user ID instead. |
 | color_scheme | string | The color integer of the main color that is to be used in commands using embed. |

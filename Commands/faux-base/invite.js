@@ -6,7 +6,8 @@ module.exports = class Invite extends Command {
   get cooldown() { return 0 }
 
   exec(message, args) {
-    message.channel.send(`https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot`)
+    message.channel.send(`You can invite the bot using this link: <https://discordapp.com/oauth2/authorize?client_id=${this.client.clientID}&scope=bot>\n` + 
+                        `Remember: You can only invite me in servers that you can manage!`)
   }
 
   get helpMeta() { return {

@@ -48,6 +48,10 @@ module.exports = class Faux extends Discord.Client {
     return servers.reduce((prev, val) => prev + val, 0);
   }
 
+  get clientID() {
+    return typeof this.config.client_id === "string" ? this.config.client_id : this.user.id;
+  }
+
   async start() {
     this.db = new Database(this)
     this.db.connect(this.config.redis)
