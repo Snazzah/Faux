@@ -2,6 +2,7 @@ const { Command } = require('faux-classes')
 
 module.exports = class Ping extends Command {
   get name() { return 'ping' }
+  get aliases() { return ['pong'] }
 
   async exec(message, Args) {
     let time1 = Date.now();
