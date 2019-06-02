@@ -24,7 +24,9 @@ You can learn how to start your own Redis server [here](https://redis.io/topics/
 After that, you can run `npm i` in your terminal or bash or whatever.
 
 ### Usage
-Both `sharding.js` and `main.js` can be used to start the bot.  
+This bot is designed to be built out of. You can add/change/remove any files towards your like.
+
+Both `sharding.js` and `main.js` can be used to start the bot.  Alternatively, you can run `npm run start` to start the bot sharded and run `npm run start-noshard` to run without sharding.
 
 ### config.json
 | Property | Type | Description |
