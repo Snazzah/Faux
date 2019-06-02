@@ -7,6 +7,13 @@
     "start": "node sharding.js",
     "start-noshard": "node index.js"
   },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Snazzah/Faux.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Snazzah/Faux/issues"
+	},
   "author": "Snazzah",
   "license": "Apache-2.0",
   "dependencies": {
