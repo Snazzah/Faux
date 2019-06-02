@@ -20,7 +20,7 @@
 
   [![Dependencies](https://david-dm.org/Snazzah/Faux.svg)](https://david-dm.org/Snazzah/Faux)
 
-<div>
+</div>
 
 ### Installation
 You need to install [**Node.js** (packaged with npm)](https://nodejs.org/en/download/) and [**Redis**](https://redis.io/) for Faux to work.
