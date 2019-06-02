@@ -24,8 +24,9 @@
 
 ### Installation
 You need to install [**Node.js** (packaged with npm)](https://nodejs.org/en/download/) and [**Redis**](https://redis.io/) for Faux to work.
-You can learn how to start your own Redis server [here](https://redis.io/topics/quickstart). It's highly recommended to secure your Redis server with a password.
-After that, you can run `npm i` in your terminal or bash or whatever.
+You can learn how to start your own Redis server [here](https://redis.io/topics/quickstart). It's highly recommended to secure your Redis server with a password.  
+Duplicate `_config.json` as `config.json`  
+After that, you can run `npm i` in a terminal.
 
 ### Usage
 This bot is designed to be built out of. You can add/change/remove any files towards your like.
