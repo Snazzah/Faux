@@ -18,6 +18,10 @@
   "debug": false,
   "botlist": {},
   "api": {},
+  "sharding": {
+    "count": "auto",
+    "delay": 7500
+  },
   "commands": "./Commands",
   "client_id": true,
   "color_scheme": 15633698

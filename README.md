@@ -45,6 +45,8 @@ Both `sharding.js` and `main.js` can be used to start the bot.  Alternatively, y
 | debug | bool | Whether or not to use verbose logs. |
 | botlist | object | Bot list tokens supported by [dbots.js](https://github.com/Snazzah/dbots.js). |
 | api | object | API keys that can help with any commands you make that utilize API in any way. |
+| sharding.count | number OR `"auto"` | The number of shards to spawn when spawning shards, setting this to `"auto"` will use the recommended amount of shards by Discord. |
+| sharding.delay | number | The time in milliseconds to wait before spawning another shard |
 | commands | string | The path to the folder where all the commands will be. |
 | client_id | string OR `true` | The client ID of the bot. If you are using an older bot application, you can enter the ID here, otherwise setting this to `true` or any other value will use the user ID instead. |
 | color_scheme | string | The color integer of the main color that is to be used in commands using embed. |
