@@ -3,7 +3,7 @@ const { Command } = require('faux-classes')
 module.exports = class ReloadAll extends Command {
   get name() { return 'reloadall' }
 
-  async exec(message, args) {
+  async exec(message) {
     if(!this.client.isSharded()) return message.reply('The bot is not sharded.')
     let m = await message.channel.send(`Reloading commands in all shards.`)
     await this.client.shard.broadcastEval("this.cmds.reload(); this.cmds.preloadAll();");

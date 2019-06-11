@@ -4,7 +4,7 @@ module.exports = class Info extends Command {
   get name() { return 'info' }
   get aliases() { return ['ℹ'] }
 
-  async exec(message, args) {
+  async exec(message) {
     let servers = await this.client.serverCount();
     let embed = {
       color: this.client.config.color_scheme,

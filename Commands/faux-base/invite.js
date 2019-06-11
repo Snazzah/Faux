@@ -5,7 +5,7 @@ module.exports = class Invite extends Command {
   get aliases() { return ['✉', 'botinvite', 'botinv', 'inv'] }
   get cooldown() { return 0 }
 
-  exec(message, args) {
+  exec(message) {
     message.channel.send(`You can invite the bot using this link: <https://discordapp.com/oauth2/authorize?client_id=${this.client.clientID}&scope=bot>\n` + 
                         `Remember: You can only invite me in servers that you can manage!`)
   }

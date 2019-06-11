@@ -3,7 +3,7 @@ const { Command } = require('faux-classes')
 module.exports = class Reload extends Command {
   get name() { return 'reload' }
 
-  exec(message, args) {
+  exec(message) {
     message.channel.send("Reloading commands...")
     this.client.cmds.reload()
     this.client.cmds.preloadAll()

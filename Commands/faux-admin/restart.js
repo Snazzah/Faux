@@ -3,7 +3,7 @@ const { Command } = require('faux-classes')
 module.exports = class Restart extends Command {
   get name() { return 'restart' }
 
-  async exec(message, args) {
+  async exec(message) {
     await message.channel.send(`Restarting shard.`)
     process.exit(0)
   }
