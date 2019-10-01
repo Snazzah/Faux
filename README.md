@@ -1,5 +1,5 @@
 <div align=center>
-  <img src="https://i-need.discord.cards/7734f1.png" alt="logo" align="left" width=300>
+  <img src="https://im.ratelimited.today/7734f1.png" alt="logo" align="left" width=300>
   <div>
     <h1>Faux</h1>
     <p>Simple and powerful Discord bot engine</p>
