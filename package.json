@@ -19,7 +19,7 @@
   "dependencies": {
     "discord.js": "^11.5.1",
     "dbots": "^1.1.0",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "eventemitter3": "^3.1.0",
     "chalk": "^2.4.1",
     "faux-classes": "./Classes",
