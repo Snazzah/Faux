@@ -1,4 +1,13 @@
 <div align=center>
+
+  # ⚠️ Faux is deprecated.
+  #### If you want a better, up-to-date, typed bot framework, use [Dexare](https://github.com/Dexare/Dexare) instead!
+
+  ---
+
+</div>
+
+<div align=center>
   <img src="https://im.ratelimited.today/7734f1.png" alt="logo" align="left" width=300>
   <div>
     <h1>Faux</h1>
